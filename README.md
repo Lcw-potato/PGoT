@@ -105,3 +105,4 @@ The structured trace preserves the queried cylinder, its collision event, and it
 }
 ```
 
+<p align="center"><sub><em>Code and data will be released after publication.</em></sub></p>
