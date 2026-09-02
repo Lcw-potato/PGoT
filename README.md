@@ -4,10 +4,6 @@
 
 ### Tracking Physical Evidence from Video to Graph, Answer, and Audit
 
-**Chengwen Liu · Shuo Liu · Jisheng Dang<sup>*</sup> · Hong Peng<sup>*</sup> · Qi Tian · Tat-Seng Chua**
-
-<sup>*</sup> Corresponding authors
-
 <p>
   <img src="https://img.shields.io/badge/task-physical%20video%20reasoning-2F6F8F?style=flat-square" alt="Physical video reasoning">
   <img src="https://img.shields.io/badge/representation-typed%20task%20graph-D49A3A?style=flat-square" alt="Typed task graph">
@@ -75,8 +71,21 @@ The 512-pair AB/BA test separates graph identity from candidate position. Video 
 | Controlled evaluation | 512 held-out graph pairs; 10,990 component-analysis samples; 256 SAM3-audit samples |
 | Benchmarks | CLEVRER, CLEVRER-Humans, VSI-Bench, VideoMMMU, MMVU, MVBench, TempCompass, Video-MME |
 | Backbone and input | Qwen2.5-VL-7B-Instruct; 16 uniformly sampled frames |
-| Training | Graph-answer SFT, graph-aware GRPO, and 240-update order-equivariant continuation |
-| Optimization | 4 GPUs; global batch 8; learning rate 5e-7; bfloat16; DeepSpeed ZeRO-3 |
+
+## Environment
+
+| Component | Version / configuration |
+|:--|:--|
+| Python | 3.11 |
+| PyTorch | >= 2.5.1 with CUDA support |
+| DeepSpeed | 0.15.4 |
+| TRL | 0.16.0 |
+| vLLM | 0.7.2 |
+| Weights & Biases | 0.18.3 |
+| Transformers | Qwen2.5-VL-compatible build at commit `336dc69d63d56f232a183a3e7f52790429b871ef` |
+| Video stack | `qwen-vl-utils`, `decord`, `av`, and `flash-attn` |
+
+The reported training uses 4 GPUs with micro-batch 1 per GPU, gradient accumulation 2, and global batch 8. Optimization uses a learning rate of `5e-7`, cosine scheduling, 5% warm-up, bfloat16 precision, ZeRO-3, and gradient checkpointing. Pair continuation and locked evaluation disable vLLM and use greedy decoding with at most 768 new tokens.
 
 ## Qualitative Example
 
@@ -95,5 +104,4 @@ The structured trace preserves the queried cylinder, its collision event, and it
   year   = {2026}
 }
 ```
-
 
