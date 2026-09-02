@@ -1,0 +1,29 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# Python caches for the future code release
+__pycache__/
+*.py[cod]
+
+# Large local checkpoints and experiment outputs
+checkpoints/
+outputs/
+wandb/
+
+
